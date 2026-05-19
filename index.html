@@ -793,56 +793,22 @@
 
 <section class="poll-section">
   <h2 class="section-heading">Who's <em>Coming?</em></h2>
-  <p class="section-sub">cast your vote, bestie 🩷</p>
-
+  <p class="section-sub">cast your vote, bestie</p>
   <div class="poll-card">
-    <div class="poll-friend" id="f1">
-      <div class="friend-info">
-        <div class="friend-avatar av1" id="av1">✦</div>
-        <div>
-          <div class="friend-name" id="name1">Bestie 1</div>
-          <div class="friend-role">Click ✏️ to enter your name</div>
-        </div>
-      </div>
-      <div class="vote-btns">
-        <button class="vote-btn vote-yes" onclick="vote(1,'yes')">I'm in 🩷</button>
-        <button class="vote-btn vote-no" onclick="vote(1,'no')">Can't make it 😢</button>
-      </div>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
+      <input id="nameInput2" type="text" placeholder="your name..." style="width:100%;padding:14px 18px;border-radius:14px;border:1px solid rgba(192,67,94,0.35);background:#0d0509;color:#f0d6e0;font-family:Raleway,sans-serif;font-size:15px;outline:none;box-sizing:border-box;"/>
+      <select id="voteSelect" style="width:100%;padding:14px 18px;border-radius:14px;border:1px solid rgba(192,67,94,0.35);background:#0d0509;color:#f0d6e0;font-family:Raleway,sans-serif;font-size:15px;outline:none;cursor:pointer;box-sizing:border-box;">
+        <option value="">are you coming?</option>
+        <option value="yes">yes, i'm in!</option>
+        <option value="no">can't make it</option>
+      </select>
+      <button id="submitBtn" style="width:100%;padding:14px;border-radius:100px;background:linear-gradient(135deg,#8b1a2e,#c0435e);border:none;color:#fdf3f7;font-family:Raleway,sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600;">Submit</button>
+      <div id="submitMsg" style="text-align:center;font-family:Cormorant Garamond,serif;font-style:italic;color:#9e7282;font-size:14px;min-height:20px;"></div>
     </div>
-
-    <div class="poll-friend" id="f2">
-      <div class="friend-info">
-        <div class="friend-avatar av2" id="av2">✦</div>
-        <div>
-          <div class="friend-name" id="name2">Bestie 2</div>
-          <div class="friend-role">Click ✏️ to enter your name</div>
-        </div>
-      </div>
-      <div class="vote-btns">
-        <button class="vote-btn vote-yes" onclick="vote(2,'yes')">I'm in 🩷</button>
-        <button class="vote-btn vote-no" onclick="vote(2,'no')">Can't make it 😢</button>
-      </div>
-    </div>
-
-    <div class="poll-friend" id="f3">
-      <div class="friend-info">
-        <div class="friend-avatar av3" id="av3">✦</div>
-        <div>
-          <div class="friend-name" id="name3">Bestie 3</div>
-          <div class="friend-role">Click ✏️ to enter your name</div>
-        </div>
-      </div>
-      <div class="vote-btns">
-        <button class="vote-btn vote-yes" onclick="vote(3,'yes')">I'm in 🩷</button>
-        <button class="vote-btn vote-no" onclick="vote(3,'no')">Can't make it 😢</button>
-      </div>
-    </div>
-
-    <!-- Results -->
     <div class="poll-result">
-      <div class="result-count"><span id="yesCount">0</span> / 3</div>
-      <div class="result-subtitle" id="resultText">waiting for your besties... 👁️</div>
-      <div class="progress-bar">
+      <div class="result-count"><span id="yesCount">0</span> coming</div>
+      <div class="result-subtitle" id="resultText">waiting for your besties...</div>
+      <div class="progress-bar" style="margin:12px 0;">
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <div class="confirmed-list" id="confirmedList"></div>
@@ -850,14 +816,7 @@
   </div>
 </section>
 
-<!-- Name Entry Modal -->
-<div id="nameModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center;">
-  <div style="background:#180b11; border:1px solid rgba(192,67,94,0.4); border-radius:20px; padding:32px; max-width:340px; width:90%; text-align:center; position:relative;">
-    <div style="font-family:'DM Serif Display',serif; font-size:22px; color:#f9e8f0; margin-bottom:8px;">Enter your name 🩷</div>
-    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; color:#9e7282; font-size:14px; margin-bottom:24px;">so Sanjana knows it's really you</div>
-    <input id="nameInput" type="text" placeholder="your name here..." style="width:100%; padding:12px 16px; border-radius:12px; border:1px solid rgba(192,67,94,0.35); background:#0d0509; color:#f0d6e0; font-family:'Raleway',sans-serif; font-size:15px; outline:none; margin-bottom:16px;"/>
-    <button onclick="saveName()" style="width:100%; padding:12px; border-radius:100px; background:linear-gradient(135deg,#8b1a2e,#c0435e); border:none; color:#fdf3f7; font-family:'Raleway',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; font-weight:600;">Save 🩷</button>
-  </div>
+
 </div>
 
 <!-- Footer -->
@@ -867,141 +826,54 @@
   <p style="margin-top:8px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(158,114,130,0.5);">May 23 – 24 · Sat & Sun · One Night Only</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const SUPABASE_URL = 'https://ppzhmmlxcxlegyrwdkdr.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwemhtbWx4Y3hsZWd5cndka2RyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODg4NzQsImV4cCI6MjA5NDc2NDg3NH0.bCewa29uEe0K6K_VEq1bFr0LB4eNRh6tmkTDQ9jXQw4';
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-  const votes = { 1: null, 2: null, 3: null };
-  const names = { 1: 'Bestie 1', 2: 'Bestie 2', 3: 'Bestie 3' };
-  let pendingFriend = null;
+  const db = createClient(
+    'https://ppzhmmlxcxlegyrwdkdr.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwemhtbWx4Y3hsZWd5cndka2RyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODg4NzQsImV4cCI6MjA5NDc2NDg3NH0.bCewa29uEe0K6K_VEq1bFr0LB4eNRh6tmkTDQ9jXQw4'
+  );
 
-  // Load existing votes from Supabase on page load
   async function loadVotes() {
-    const { data, error } = await supabase.from('votes').select('*');
-    if (error) { console.error('Load error:', error); return; }
-    data.forEach((row, i) => {
-      const id = i + 1;
-      if (id > 3) return;
-      if (row.name && row.name !== 'Bestie ' + id) {
-        names[id] = row.name;
-        const initials = row.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-        document.getElementById('av' + id).textContent = initials;
-        document.getElementById('name' + id).textContent = row.name;
-      }
-      if (row.vote) {
-        votes[id] = row.vote;
-        const r = document.getElementById('f' + id);
-        r.querySelectorAll('.vote-btn').forEach(b => b.classList.remove('active'));
-        const target = r.querySelector(row.vote === 'yes' ? '.vote-yes' : '.vote-no');
-        if (target) target.classList.add('active');
-        if (row.vote === 'yes') {
-          r.style.background = 'rgba(139,26,46,0.08)';
-          r.style.borderRadius = '12px';
-        }
-      }
-    });
-    updateResults();
-  }
-
-  // Save or update a vote in Supabase
-  async function saveToSupabase(id) {
-    const { data: existing } = await supabase
-      .from('votes')
-      .select('id')
-      .eq('name', names[id]);
-
-    if (existing && existing.length > 0) {
-      await supabase.from('votes').update({ vote: votes[id] }).eq('name', names[id]);
-    } else {
-      await supabase.from('votes').insert([{ name: names[id], vote: votes[id] }]);
-    }
-  }
-
-  document.querySelectorAll('.friend-name').forEach((el, i) => {
-    const id = i + 1;
-    el.style.cursor = 'pointer';
-    el.title = 'Click to enter your name';
-    el.addEventListener('click', () => openModal(id));
-  });
-  document.querySelectorAll('.friend-avatar').forEach((el, i) => {
-    const id = i + 1;
-    el.style.cursor = 'pointer';
-    el.addEventListener('click', () => openModal(id));
-  });
-
-  function openModal(id) {
-    pendingFriend = id;
-    document.getElementById('nameInput').value = names[id] !== 'Bestie ' + id ? names[id] : '';
-    document.getElementById('nameModal').style.display = 'flex';
-    setTimeout(() => document.getElementById('nameInput').focus(), 100);
-  }
-
-  document.getElementById('nameInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') saveName();
-    if (e.key === 'Escape') document.getElementById('nameModal').style.display = 'none';
-  });
-
-  document.getElementById('nameModal').addEventListener('click', e => {
-    if (e.target === document.getElementById('nameModal'))
-      document.getElementById('nameModal').style.display = 'none';
-  });
-
-  function saveName() {
-    const val = document.getElementById('nameInput').value.trim();
-    if (!val) return;
-    names[pendingFriend] = val;
-    const initials = val.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-    document.getElementById('av' + pendingFriend).textContent = initials;
-    document.getElementById('name' + pendingFriend).textContent = val;
-    document.getElementById('nameModal').style.display = 'none';
-    updateResults();
-  }
-
-  async function vote(id, type) {
-    votes[id] = type;
-    const row = document.getElementById('f' + id);
-    row.querySelectorAll('.vote-btn').forEach(b => b.classList.remove('active'));
-    const target = row.querySelector(type === 'yes' ? '.vote-yes' : '.vote-no');
-    target.classList.add('active');
-    if (type === 'yes') {
-      row.style.background = 'rgba(139,26,46,0.08)';
-      row.style.borderRadius = '12px';
-    } else {
-      row.style.background = 'transparent';
-    }
-    updateResults();
-    await saveToSupabase(id);
-  }
-
-  function updateResults() {
-    const yesVotes = Object.values(votes).filter(v => v === 'yes').length;
-    document.getElementById('yesCount').textContent = yesVotes;
-    const pct = (yesVotes / 3) * 100;
-    document.getElementById('progressFill').style.width = pct + '%';
-
-    const msgs = [
-      'waiting for your besties... 👁️',
-      'one brave soul... the others are still deciding 🩷',
-      'the gang is almost here 🎬',
-      'it\'s a full squad sleepover!! 🩷🎬👻'
-    ];
-    document.getElementById('resultText').textContent = msgs[yesVotes] || msgs[0];
-
+    const { data, error } = await db.from('votes').select('*');
+    if (error) { console.error('load error:', error.message); return; }
+    const yesVotes = data.filter(r => r.vote === 'yes');
+    document.getElementById('yesCount').textContent = yesVotes.length;
     const list = document.getElementById('confirmedList');
     list.innerHTML = '';
-    for (let i = 1; i <= 3; i++) {
-      if (votes[i] === 'yes') {
-        const chip = document.createElement('div');
-        chip.className = 'confirmed-chip';
-        chip.textContent = '✦ ' + names[i];
-        list.appendChild(chip);
-      }
-    }
+    yesVotes.forEach(r => {
+      const chip = document.createElement('div');
+      chip.className = 'confirmed-chip';
+      chip.textContent = '+ ' + r.name;
+      list.appendChild(chip);
+    });
+    const msgs = ['waiting for your besties...', 'one brave soul is coming!', 'the gang is almost here!', 'full squad sleepover!!'];
+    document.getElementById('resultText').textContent = msgs[Math.min(yesVotes.length, 3)];
+    document.getElementById('progressFill').style.width = Math.min((yesVotes.length / 3) * 100, 100) + '%';
   }
 
-  // Load votes when page opens
+  async function submitVote() {
+    const name = document.getElementById('nameInput2').value.trim();
+    const vote = document.getElementById('voteSelect').value;
+    const msg = document.getElementById('submitMsg');
+    if (!name) { msg.textContent = 'please enter your name'; return; }
+    if (!vote) { msg.textContent = 'please choose yes or no'; return; }
+    msg.textContent = 'saving...';
+    const { data: existing } = await db.from('votes').select('name').eq('name', name);
+    if (existing && existing.length > 0) {
+      const { error } = await db.from('votes').update({ vote }).eq('name', name);
+      if (error) { msg.textContent = 'error: ' + error.message; return; }
+    } else {
+      const { error } = await db.from('votes').insert([{ name, vote }]);
+      if (error) { msg.textContent = 'error: ' + error.message; return; }
+    }
+    msg.textContent = vote === 'yes' ? "yay, you're in!" : 'aw, you will be missed';
+    document.getElementById('nameInput2').value = '';
+    document.getElementById('voteSelect').value = '';
+    loadVotes();
+  }
+
+  document.getElementById("submitBtn").addEventListener("click", submitVote);
   loadVotes();
 </script>
 </body>
